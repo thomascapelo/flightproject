@@ -5,6 +5,7 @@ class CreateAirports < ActiveRecord::Migration[7.0]
       t.string :code
       t.string :city
       t.string :country
+    
 
       t.timestamps
     end
