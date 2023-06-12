@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_103329) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_141402) do
   create_table "airlines", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -38,11 +38,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_103329) do
     t.integer "flight_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "passenger_id", null: false
+    t.integer "booking_status_id", null: false
+    t.integer "flight_class_id", null: false
+    t.index ["booking_status_id"], name: "index_bookings_on_booking_status_id"
+    t.index ["flight_class_id"], name: "index_bookings_on_flight_class_id"
     t.index ["flight_id"], name: "index_bookings_on_flight_id"
+    t.index ["passenger_id"], name: "index_bookings_on_passenger_id"
   end
 
   create_table "flight_classes", force: :cascade do |t|
-    t.string "class"
+    t.string "class_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,6 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_103329) do
     t.integer "destination_airport_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "airline_id", null: false
+    t.index ["airline_id"], name: "index_flights_on_airline_id"
   end
 
   create_table "passengers", force: :cascade do |t|
@@ -73,5 +81,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_103329) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.string "booking_status"
+    t.integer "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reservations_on_booking_id"
+  end
+
+  add_foreign_key "bookings", "booking_statuses"
+  add_foreign_key "bookings", "flight_classes"
   add_foreign_key "bookings", "flights"
+  add_foreign_key "bookings", "passengers"
+  add_foreign_key "flights", "airlines"
+  add_foreign_key "reservations", "bookings"
 end
