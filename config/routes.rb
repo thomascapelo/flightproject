@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'flights#index'
   resources :flights, only: [:index, :show]
-
+  get '/flights/search', to: 'flights#search', as: 'search_flights'
 end

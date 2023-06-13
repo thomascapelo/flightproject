@@ -1,8 +1,0 @@
-<%= simple_form for: @flight_search, url: search_flights_path, method: :get do |f| %>
-    <%= f.input :origin, collection: @airports, label: 'From', input_html: { class: 'form-control' } %>
-    <%= f.input :destination, collection: @airports, label: 'To', input_html: { class: 'form-control' } %>
-    <%= f.input :departure_date, as: :date, label: 'Departure', input_html: { class: 'form-control' } %>
-    <%= f.input :return_date, as: :date, label: 'Return', input_html: { class: 'form-control' } %>
-    <%= f.input :passengers, collection: 1..4, label: 'Passengers', input_html: { class: 'form-control' } %>
-    <%= f.button :submit, 'Search', class: 'btn btn-primary' %>
-<% end %>
