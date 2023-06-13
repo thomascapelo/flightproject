@@ -1,4 +1,13 @@
 <%= form_for :flight_search, url: search_flights_path, method: :get do |f| %>
-  <!-- Form fields here -->
+  <%= f.label :From %>
+  <%= f.text_field :from %>
+  <%= f.label :To %>
+  <%= f.text_field :to %>
+  <%= f.label :Depart %>
+  <%= f.date_select :depart %>
+  <%= f.label :Return %>
+  <%= f.date_select :return %>
+  <%= f.label :passengers %>
+  <%= f.number_field :passengers %>
   <%= f.button :submit %>
 <% end %>
