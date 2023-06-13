@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Webpack
+gem 'webpacker'
+
 # Tailwind
 gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.29'
 
